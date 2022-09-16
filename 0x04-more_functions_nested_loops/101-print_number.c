@@ -23,7 +23,7 @@ void print_number(int n)
 		_putchar('-');
 		a0 *= -1; a1 *= -1; a2 *= -1; a3 *= -1; a4 *= -1;
 		a5 *= -1; a6 *= -1; a7 *= -1; a8 *= -1; a9 *= -1;
-	}
+{
 	if (s0 != 0)
 		_putchar('0' + a0);
 	if (s1 != 0)
@@ -43,4 +43,5 @@ void print_number(int n)
 	if (s8 != 0)
 		_putchar('0' + a8);
 	_putchar('0' + a9);
+
 }
