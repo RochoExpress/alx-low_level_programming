@@ -1,26 +1,29 @@
+#include <studio.h>
 #include "main.h"
-
 /**
- * rev_string - reverses a string
- * @s: string to reverse
- *
- * Return: void
+ *puts2 - print pair values.
+ *@str: value to be evaluate.
+ *Return: not.
  */
-void rev_string(char *s)
+void puts2(char *str)
 {
-	int i = 0, j = 0;
-	char str[500];
+	int len = 0;
+	int l = 0;
+	char *y = str;
+	int z;
 
-	while (*(s + i))
+	while (*y != '\0')
 	{
-		*(str + i) = *(s + i);
-		i++;
+		y++;
+		len++;
 	}
-	i = i - 1;
-	while (i >= 0)
+	l = len - 1;
+	for (z = 0 ; z <= l ; z++)
 	{
-		*(s + i) = *(str + j);
-		j++;
-		i--;
+		if (z % 2 == 0)
+		{
+			_putchar(str[z]);
+		}
 	}
+	_putchar('\n');
 }
