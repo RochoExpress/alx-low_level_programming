@@ -1,29 +1,19 @@
-#include <studio.h>
 #include "main.h"
+
 /**
- *puts2 - print pair values.
- *@str: value to be evaluate.
- *Return: not.
+ * puts2 - prints every other character of a  string to stdout
+ * @str: string to print
+ *
+ * Return: void
  */
 void puts2(char *str)
 {
-	int len = 0;
-	int l = 0;
-	char *y = str;
-	int z;
+	int i = 0;
 
-	while (*y != '\0')
+	while (*(str + i))
 	{
-		y++;
-		len++;
-	}
-	l = len - 1;
-	for (z = 0 ; z <= l ; z++)
-	{
-		if (z % 2 == 0)
-		{
-			_putchar(str[z]);
-		}
+		_putchar(*(str + i));
+		i = i + 2;
 	}
 	_putchar('\n');
 }
