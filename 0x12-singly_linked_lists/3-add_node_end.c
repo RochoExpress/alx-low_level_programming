@@ -1,46 +1,70 @@
+lines (66 sloc)  1.3 KB
 #include "lists.h"
 #include <stdlib.h>
-#include <string.h>
-
+#include <stdio.h>
+#include <stddef.h>
 /**
- * _strlen - finds the length of a string
- * @str: string to find the length of
- *
- * Return: length of string
+ * _strlen - gets length of the string
+ * @s: string
+ * Return: length of the string
  */
-unsigned int _strlen(char *str)
+int _strlen(const char *s)
 {
-	unsigned int i;
+	int i;
 
-	for (i = 0; str[i]; i++)
+	for (i = 0; s[i]; i++)
 		;
 	return (i);
 }
-
 /**
- * add_node - adds a node to the beginning of a linked list
- * @head: double pointer to a lined list
- * @str: string to add to the new node
- *
- * Return: pointer to the new node
+ * _strdup - recreation of string duplicate function
+ * @src: source of string to duplicate
+ * Return: pointer to malloc'd space with copied string
  */
-list_t *add_node(list_t **head, const char *str)
+void *_strdup(const char *src)
 {
-	list_t *new;
+	int len, i;
+	char *dest;
+
+	len = _strlen(src);
+	dest = malloc((len + 1) * sizeof(char));
+	if (dest == NULL)
+		return (NULL);
+	for (i = 0; src[i]; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (dest);
+}
+/**
+ * add_node_end - add new nodes to the end of the list
+ * @head: current place in the list
+ * @str: string to add to the head
+ * Return: pointer to current position in list
+ */
+list_t *add_node_end(list_t **head, const char *str)
+{
+	list_t *new, *current;
+	char *dupstr;
 
 	if (str == NULL)
+		return (NULL);
+	dupstr = _strdup(str);
+	if (dupstr == NULL)
 		return (NULL);
 	new = malloc(sizeof(list_t));
 	if (new == NULL)
 		return (NULL);
-	new->str = strdup(str);
-	if (new->str == NULL)
+	new->str = dupstr;
+	new->len = _strlen(str);
+	new->next = NULL;
+	if (*head == NULL)
 	{
-		free(new);
-		return (NULL);
+		*head = new;
+		return (*head);
 	}
-	new->len = _strlen(new->str);
-	new->next = *head;
-	*head = new;
-	return (new);
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new;
+	return (*head);
 }
